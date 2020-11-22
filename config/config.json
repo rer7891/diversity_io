@@ -1,0 +1,18 @@
+{
+  "development": {
+    "username": "beckyrobran",
+    "password": null,
+    "database": "diversity_io-dev",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "beckyrobran",
+    "password": null,
+    "database": "diversity_io-test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
