@@ -2,5 +2,11 @@ html
    head
       title Hello!
    body
-    h4 Welcome :)
+   a(href='/signin') Signin
+   a(href='/logout') Logout
+   br
+   h4 Welcome :)
+   br
+   if(message)
+      h4 #{message}
  
