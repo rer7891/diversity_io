@@ -1,0 +1,21 @@
+html
+   head
+      title Signup
+   body
+    a(href='/') Home
+    br
+    form(action = "/signin" method = 'post')
+    
+        input(id='email', name = "email" type = "text" required placeholder = "Email")
+        br
+        input(id='user_name', name = "user_name" type = "text" required placeholder = "User Name")
+        br
+        input(id='password', name = "password" type = "text" required placeholder = "Password")
+        br
+        button(type = "Submit") Sign me in!
+    p Dont' have an account yet? 
+    br
+    a(href='/signup') Register Here
+    br
+    if(message)
+        h4 #{message}
