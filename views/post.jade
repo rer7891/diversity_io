@@ -1,0 +1,21 @@
+html
+   head
+      title Post
+   body
+   a(href='/signin') Signin
+   br
+   a(href='/logout') Logout
+   h2 Post Details:
+    if(post != null)
+      p=post.title
+      p=post.description
+
+      h2 Edit Post:
+      form(action = `/post/${post.id}` method = 'post')
+        input(id='title', name = "title" type = "text" value = `${post.title}`)
+        br
+        input(id='description', name = "description" type = "text" value = `${post.description}`)
+        br
+        input(id='image', name = "image" type = "text" value = `${post.image}`)
+        br
+        button(type = "Submit") Edit Post!
