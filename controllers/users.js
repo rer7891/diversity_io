@@ -2,6 +2,7 @@ const User = require('../models/user');
 var db = require('../models');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
 
   exports.homepage = (req, res, next) => {
     res.render('homepage')
@@ -15,8 +16,10 @@ const saltRounds = 10;
       })
       .then((user) => {
         if(user && bcrypt.compareSync(req.body.password, user.password)) {
-          req.session.user = user;
-          console.log("@!!!!!, session", req.session.user)
+          const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn: '1h' });
+          console.log({status:"success", message: "user found!!!", data:{user: user, token:token}});
+          req.session.user = user.email;
+          req.session.token = token
           res.redirect('/')
         }
         else {
@@ -24,7 +27,7 @@ const saltRounds = 10;
         }
       })
   };
-
+  
   exports.createUser = (req, res, next) => {
     if(!req.body.user_name || !req.body.password){
         res.status("400");
@@ -50,8 +53,8 @@ const saltRounds = 10;
             password: hash
             }).then(function(data) {
               if (data) {
-              req.session.user = data;
-              res.redirect('/');
+                req.session.user = data.email;
+                res.redirect('/');
               }
             })
             .catch((error) => {
@@ -63,6 +66,6 @@ const saltRounds = 10;
   };
 
   exports.logout = (req, res, next) => {
-    req.session.destroy
+    req.session.destroy();
     res.render('homepage', {message: "You are logged out."})
   };

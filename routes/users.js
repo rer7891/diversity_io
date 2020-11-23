@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/users');
-const user = require('../models/user');
 
 // Home page route.
 router.get('/', userController.homepage)
