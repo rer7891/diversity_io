@@ -1,0 +1,23 @@
+html
+   head
+      title Posts
+   body
+   a(href='/signin') Signin
+   br
+   a(href='/logout') Logout
+   h2 Posts
+    if(posts != null)
+      each post in posts
+       a(href=`/post/${post.id}`) 
+        h4=post.title
+       br
+
+    form(action = "/posts" method = 'post')
+        input(id='title', name = "title" type = "text" required placeholder = "Title")
+        br
+        input(id='description', name = "description" type = "text" required placeholder = "Description")
+        br
+        input(id='image', name = "image" type = "text" required placeholder = "Image Url")
+        br
+        button(type = "Submit") Create New Post!
+
